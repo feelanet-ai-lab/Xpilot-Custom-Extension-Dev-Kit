@@ -1,6 +1,8 @@
 import { HttpModule } from "@nestjs/axios";
 import { Module } from "@nestjs/common";
 import { McpModule, McpTransportType } from "@rekog/mcp-nest";
+import { AuthenticationsModule } from "./authentications/authentications.module";
+import { AppService } from "./service/app.service";
 
 @Module({
   imports: [
@@ -15,8 +17,9 @@ import { McpModule, McpTransportType } from "@rekog/mcp-nest";
       },
     }),
     HttpModule,
+    AuthenticationsModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [AppService],
 })
 export class AppModule {}
