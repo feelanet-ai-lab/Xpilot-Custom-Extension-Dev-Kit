@@ -25,9 +25,27 @@ loadConfiguration("config.json", joiConfigSchemaValidation);
 
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
+import * as ngrok from "@ngrok/ngrok";
+import { Logger } from "@nestjs/common";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.listen(process.env.EXPOSE_PORT || 3000);
+
+  const exposePort = +process.env.EXPOSE_PORT || 3000;
+  await app.listen(exposePort);
+
+  if (process.env.MODE === "local") {
+    const ngrokLogger = new Logger("Ngrok");
+    await ngrok.connect({
+      addr: exposePort,
+      authtoken: process.env.NGROK_ACCESS_KEY,
+      onLogEvent: (message) => {
+        ngrokLogger.debug(message);
+      },
+      onStatusChange: (status) => {
+        ngrokLogger.warn(`Ngrok status changed: ${status}`);
+      },
+    });
+  }
 }
 bootstrap();
