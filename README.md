@@ -27,7 +27,7 @@
 2. 회원 가입 or 로그인
 3. 로그인 후 대시보드에서 Authtoken 복사
 <p align="center">
-  <img src="./description_images/1.png" width="880" alt="MCP Inspector 실행 및 접속 URL" />
+  <img src="description_images/1.png" width="880" alt="MCP Inspector 실행 및 접속 URL" />
   <br /><em>스크린샷 - 콘솔에 표시된 Inspector 접속 URL</em>
 </p>
 
@@ -59,14 +59,14 @@ npx @modelcontextprotocol/inspector
 
 2. 콘솔에 안내된 URL이 나오면 해당 URL 열기
 <p align="center">
-  <img src="./description_images/2.png" width="880" alt="MCP Inspector 실행 및 접속 URL" />
+  <img src="description_images/2.png" width="880" alt="MCP Inspector 실행 및 접속 URL" />
   <br /><em>스크린샷 - 콘솔에 표시된 Inspector 접속 URL</em>
 </p>
 
 3. MCP Inspector 페이지에서 서버 MCP 서버 외부 URL을 입력하고 끝에 `/mcp` 경로를 추가
 4. `Connect` 버튼을 눌러 연결 후 툴 테스트
 <p align="center">
-  <img src="./description_images/3.png" width="880" alt="MCP Inspector UI 설정 및 툴 테스트" />
+  <img src="description_images/3.png" width="880" alt="MCP Inspector UI 설정 및 툴 테스트" />
   <br /><em>스크린샷 - MCP Inspector에서 URL 입력 후 툴 테스트</em>
 </p>
 
