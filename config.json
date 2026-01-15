@@ -1,9 +1,0 @@
-{
-  "MODE": "local",
-  "EXPOSE_PORT": 3003,
-  "NGROK_ACCESS_KEY": "",
-
-  "SERVER_NAME": "hello-world",
-  "SERVER_DESCRIPTION": "Hello World",
-  "SERVER_VERSION": "0.0.1"
-}

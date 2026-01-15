@@ -1,9 +1,8 @@
-import { loadConfiguration } from "@lib/common-library";
 import * as Joi from "joi";
 
 // ==============================================================================
 
-const joiConfigSchemaValidation = Joi.object({
+export const joiConfigSchemaValidation = Joi.object({
   MODE: Joi.string().trim().valid("local", "prod").required(),
 
   EXPOSE_PORT: Joi.number().port().required(),
@@ -14,14 +13,10 @@ const joiConfigSchemaValidation = Joi.object({
     otherwise: Joi.string().trim().allow("").optional(),
   }),
 
-  SERVER_NAME: Joi.string().trim().required(),
-  SERVER_DESCRIPTION: Joi.string().trim().required(),
-  SERVER_VERSION: Joi.string().trim().required(),
-
   // --------------------------------------------------------------------------
 });
 
-loadConfiguration("config.json", joiConfigSchemaValidation);
+// ==============================================================================
 
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
@@ -29,9 +24,19 @@ import * as ngrok from "@ngrok/ngrok";
 import { Logger } from "@nestjs/common";
 
 async function bootstrap() {
+  const logger = new Logger("Bootstrap");
+  logger.verbose(`mode: ${process.env.MODE}`);
+  logger.verbose(
+    `server name: ${process.env.npm_package_name || "Can not load server name"}`,
+  );
+  logger.verbose(
+    `server version: ${process.env.npm_package_version || "Can not load server version"}`,
+  );
+
   const app = await NestFactory.create(AppModule);
 
   const exposePort = +process.env.EXPOSE_PORT || 3000;
+  logger.verbose(`exposePort: ${exposePort}`);
   await app.listen(exposePort);
 
   if (process.env.MODE === "local") {
